@@ -7,27 +7,28 @@ import timeit
 
 ### Function ###
 def insertionSort(arr):
-    checks = 0
+    comparisons = 0
+    swaps = 0
 
     # Traverse through 1 to len(arr)
     for i in range(1, len(arr)):
-
         key = arr[i]
+        position = i-1
 
-        # Move elements of arr[0..i-1], that are greater than key, to one position ahead of their current position
-        j = i-1
-        while j >=0 and key < arr[j] :
-                arr[j+1] = arr[j]
-                j -= 1
-        arr[j+1] = key
-        checks += 1
+        while key < arr[position] and position >= 0:
+            arr[position + 1] = arr[position]
+            position -= 1
+            swaps += 1
 
-    print(checks)
+        arr[position+1] = key
+
+
+    print("Comparisons = swaps: ")
+    print(swaps)
 
 
 # Array
-arr =
-
+arr = 
 
 # Sort array
 print(timeit.timeit('insertionSort(arr)', 'from __main__ import insertionSort, arr', number=1))

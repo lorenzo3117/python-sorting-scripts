@@ -8,7 +8,8 @@ import timeit
 ### Function ###
 def bubbleSort(arr):
     n = len(arr)
-    checks = 0
+    comparisons = 0
+    swaps = 0
 
     # Traverse through all array elements
     for i in range(n):
@@ -19,21 +20,24 @@ def bubbleSort(arr):
 
             # Traverse the array from 0 to n-i-1.
             # Swap if the element found is greater than the next element
+            comparisons += 1
             if arr[j] > arr[j+1]:
+                swaps += 1
                 arr[j], arr[j+1] = arr[j+1], arr[j]
                 swapped = True
-                checks += 1
 
         # If no two elements were swapped by inner loop, then break
         if swapped == False:
             break
 
-    print(checks)
+    print("Comparisons: ")
+    print(comparisons)
+    print("Swaps: ")
+    print(swaps)
 
 
 # Array
-arr =
-
+arr = 
 
 # Sort array
 print(timeit.timeit('bubbleSort(arr)', 'from __main__ import bubbleSort, arr', number=1))

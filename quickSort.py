@@ -2,14 +2,16 @@
 # This code is contributed by Mohit Kumra
 # https://www.geeksforgeeks.org/quick-sort/
 # https://pastecode.xyz/view/44912854#L17
-import timeit
 import time
 
+
+swaps = 0
 
 # This function takes last element as pivot, places the pivot element at its correct position in sorted
 # array, and places all smaller (smaller than pivot)
 # to left of pivot and all greater elements to right of pivot
 def partition(arr,low,high):
+    global swaps
     i = ( low-1 )         # index of smaller element
     pivot = arr[high]     # pivot
 
@@ -20,6 +22,7 @@ def partition(arr,low,high):
 
             # Increment index of smaller element
             i = i+1
+            #swaps += 1
             arr[i],arr[j] = arr[j],arr[i]
 
     arr[i+1],arr[high] = arr[high],arr[i+1]
@@ -30,8 +33,10 @@ def partition(arr,low,high):
 # low  --> Starting index,
 # high  --> Ending index
 
-# Function to do Quick sort
+# Function to do Quick Sort
 def quickSort(arr,low,high):
+    global swaps
+
     if low < high:
 
         # pi is partitioning index, arr[p] is now at right place
@@ -41,9 +46,13 @@ def quickSort(arr,low,high):
         quickSort(arr, low, pi-1)
         quickSort(arr, pi+1, high)
 
+        swaps += 1
+
+
+
 
 # Array
-arr =
+arr = [14,9,5,7,18,12,15,6,10,8,13,2,4,16,1,3,0,17,18,11]
 
 # Sort array
 n = len(arr)
@@ -51,3 +60,6 @@ start = time.time()
 quickSort(arr,0,n-1)
 end = time.time()
 print(end - start)
+
+print("Swaps: ")
+print(swaps)
