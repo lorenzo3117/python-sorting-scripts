@@ -32,7 +32,7 @@ def selectionSort(arr):
 
 
 # Array
-arr =  [8,2,1,3,9,6,4,0,7,5]
+arr =
 
 # Sort array
 print(timeit.timeit('selectionSort(arr)', 'from __main__ import selectionSort, arr', number=1))

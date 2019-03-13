@@ -22,7 +22,6 @@ def insertionSort(arr):
 
         arr[position+1] = key
 
-
     print("Comparisons = swaps: ")
     print(swaps)
 

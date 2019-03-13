@@ -1,67 +1,36 @@
-# Python program for implementation of heap Sort
-# This code is contributed by Mohit Kumra
-# https://www.geeksforgeeks.org/heap-sort/
-# https://pastecode.xyz/view/44912854#L17
-import timeit
-
-
-comparisons = 0
+# https://stackoverflow.com/questions/13979714/heap-sort-how-to-sort
 swaps = 0
 
-# To heapify subtree rooted at index i.
-# n is size of heap
-def heapify(arr, n, i):
-    global comparisons
+
+def swap(i, j):
     global swaps
+    sqc[i], sqc[j] = sqc[j], sqc[i]
+    swaps += 1
 
-    largest = i       # Initialize largest as root
-    l = 2 * i + 1     # left = 2*i + 1
-    r = 2 * i + 2     # right = 2*i + 2
+def heapify(end,i):
+    l=2 * i + 1
+    r=2 * (i + 1)
+    max=i
+    if l < end and sqc[i] < sqc[l]:
+        max = l
+    if r < end and sqc[max] < sqc[r]:
+        max = r
+    if max != i:
+        swap(i, max)
+        heapify(end, max)
 
-    # See if left child of root exists and is greater than root
-    if l < n and arr[i] < arr[l]:
-        comparisons += 1
-        largest = l
+def heap_sort():
+    end = len(sqc)
+    start = end // 2 - 1 # use // instead of /
+    for i in range(start, -1, -1):
+        heapify(end, i)
+    for i in range(end-1, 0, -1):
+        swap(i, 0)
+        heapify(i, 0)
 
-    # See if right child of root exists and is greater than root
-    if r < n and arr[largest] < arr[r]:
-        comparisons += 1
-        largest = r
+sqc = [0,4,2,1,6,8,3,9,5,7]
 
-    # Change root, if needed
-    if largest != i:
-        swaps += 1
-        arr[i],arr[largest] = arr[largest],arr[i] # swap
-
-        # Heapify the root.
-        heapify(arr, n, largest)
-
-
-# The main function to sort an array of given size
-def heapSort(arr):
-    n = len(arr)
-    global comparisons
-    global swaps
-
-    # Build a maxheap.
-    for i in range(n, -1, -1):
-        heapify(arr, n, i)
-
-    # One by one extract elements
-    for i in range(n-1, 0, -1):
-        swaps += 1
-        arr[i], arr[0] = arr[0], arr[i] # swap
-        heapify(arr, i, 0)
-
-
-
-
-# Array
-arr = [8,2,1,3,9,6,4,0,7,5]
-
-# Sort array
-print(timeit.timeit('heapSort(arr)', 'from __main__ import heapSort, arr', number=1))
-print("Comparisons: ")
-print(comparisons)
+heap_sort()
+print(sqc)
 print("Swaps: ")
 print(swaps)
