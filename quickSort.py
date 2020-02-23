@@ -9,7 +9,7 @@ def quickSort(arr):
     sort(arr)
     end = time.time()
     print("QUICK SORT\nComparisons: " + str(comparisons) + "\nSwaps: " + str(swaps))
-    print("Time elapsed: ", str(end - start))
+    print("Time elapsed: ", str(end - start) + "\n")
 
 def sort(array):
     """Sort the array by using quicksort."""
