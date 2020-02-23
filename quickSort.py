@@ -1,30 +1,40 @@
-# https://www.youtube.com/watch?v=RFyLsF9y83c&list=WL&index=86&t=0s
-# https://pastecode.xyz/view/44912854#L17
-from random import randint
+#https://stackoverflow.com/questions/18262306/quicksort-with-python
 import time
 
+comparisons = 0
+swaps = 0
+
 def quickSort(arr):
+    start = time.time()
+    sort(arr)
+    end = time.time()
+    print("QUICK SORT\nComparisons: " + str(comparisons) + "\nSwaps: " + str(swaps))
+    print("Time elapsed: ", str(end - start))
 
-    if len(arr) <= 1: return arr
-    smaller, equal, larger = [], [], []
-    pivot = arr[randint(0, len(arr)-1)]
+def sort(array):
+    """Sort the array by using quicksort."""
+    global comparisons
+    global swaps
 
-    for x in arr:
-        if x < pivot: smaller.append(x)
-        elif x == pivot: equal.append(x)
-        else: larger.append(x)
+    less = []
+    equal = []
+    greater = []
 
-    return quickSort(smaller) + equal + quickSort(larger)
-
-
-# Array
-arr = 
-
-# Sort array
-start = time.time()
-sortedArr = quickSort(arr)
-end = time.time()
-
-print("Unsorted: ", arr)
-print("Sorted: ", sortedArr)
-print("Time: ", end - start)
+    if len(array) > 1:
+        pivot = array[len(array)-1]
+        for x in array:
+            if x < pivot:
+                comparisons += 1
+                less.append(x)
+            elif x == pivot:
+                comparisons += 1
+                equal.append(x)
+            elif x > pivot:
+                comparisons += 1
+                greater.append(x)
+        # Don't forget to return something!
+        swaps += 1
+        return sort(less)+equal+sort(greater)  # Just use the + operator to join lists
+    # Note that you want equal ^^^^^ not pivot
+    else:  # You need to handle the part at the end of the recursion - when you only have one element in your array, just return the array.
+        return array

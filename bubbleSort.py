@@ -1,9 +1,6 @@
 # Python3 Optimized implementation of Bubble sort
 # This code is contributed by Shreyanshi Arun
 # https://www.geeksforgeeks.org/bubble-sort/
-# https://pastecode.xyz/view/44912854#L17
-import timeit
-
 
 ### Function ###
 def bubbleSort(arr):
@@ -30,14 +27,4 @@ def bubbleSort(arr):
         if swapped == False:
             break
 
-    print("Comparisons: ")
-    print(comparisons)
-    print("Swaps: ")
-    print(swaps)
-
-
-# Array
-arr = 
-
-# Sort array
-print(timeit.timeit('bubbleSort(arr)', 'from __main__ import bubbleSort, arr', number=1))
+    return "\nBubble Sort:\nComparisons: " + str(comparisons) + "\nSwaps: " + str(swaps)

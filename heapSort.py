@@ -1,36 +1,33 @@
 # https://stackoverflow.com/questions/13979714/heap-sort-how-to-sort
+
 swaps = 0
 
-
-def swap(i, j):
+def heapify(arr, n, i):
     global swaps
-    sqc[i], sqc[j] = sqc[j], sqc[i]
-    swaps += 1
+    count = 0
+    largest = i  
+    l = 2 * i + 1     
+    r = 2 * i + 2     
+    if l < n and arr[i] < arr[l]:
+        largest = l
+    if r < n and arr[largest] < arr[r]:
+        largest = r
+    if largest != i:
+        count += 1
+        arr[i],arr[largest] = arr[largest],arr[i]
+        swaps += 1
+        count += heapify(arr, n, largest)
+    return count
 
-def heapify(end,i):
-    l=2 * i + 1
-    r=2 * (i + 1)
-    max=i
-    if l < end and sqc[i] < sqc[l]:
-        max = l
-    if r < end and sqc[max] < sqc[r]:
-        max = r
-    if max != i:
-        swap(i, max)
-        heapify(end, max)
-
-def heap_sort():
-    end = len(sqc)
-    start = end // 2 - 1 # use // instead of /
-    for i in range(start, -1, -1):
-        heapify(end, i)
-    for i in range(end-1, 0, -1):
-        swap(i, 0)
-        heapify(i, 0)
-
-sqc = [0,4,2,1,6,8,3,9,5,7]
-
-heap_sort()
-print(sqc)
-print("Swaps: ")
-print(swaps)
+def heapSort(arr):
+    global swaps
+    n = len(arr)
+    count = 0
+    for i in range(n, -1, -1):
+        heapify(arr, n, i)  
+        count += heapify(arr, i, 0)
+    for i in range(n-1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i] 
+        swaps += 1
+        count += heapify(arr, i, 0)
+    return "HEAP SORT:\nComparisons: " + str(count) + "\nSwaps: " + str(swaps)

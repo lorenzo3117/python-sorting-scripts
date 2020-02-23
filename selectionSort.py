@@ -1,8 +1,5 @@
 # Python program for implementation of Selection sort
-# https://www.geeksforgeeks.org/selection-sort/
-# https://pastecode.xyz/view/44912854#L17
-import timeit
-
+# https://www.geeksforgeeks.org /selection-sort/
 
 ### Function ###
 def selectionSort(arr):
@@ -21,18 +18,8 @@ def selectionSort(arr):
                 min_idx = j
 
         # Swap the found minimum element with the first element
-        if min_idx != i:
-            arr[i], arr[min_idx] = arr[min_idx], arr[i]
-            swaps += 1
+        
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+        swaps += 1
 
-    print("Comparisons: ")
-    print(comparisons)
-    print("Swaps: ")
-    print(swaps)
-
-
-# Array
-arr =
-
-# Sort array
-print(timeit.timeit('selectionSort(arr)', 'from __main__ import selectionSort, arr', number=1))
+    return "SELECTION SORT:\nComparisons: " + str(comparisons) + "\nSwaps: " + str(swaps)
